@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sistema
 {
-    public class Pessoa
+    public abstract class Pessoa
     {
        public string Nome { get; set; }
        public string Endereco { get; set; }

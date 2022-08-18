@@ -7,7 +7,12 @@ namespace Sistema
 {
     public class PessoaJuridica : Pessoa
     {
-        public string cnpj { get; set; }
-        public string razaoSocial { get; set; }
+        public string? cnpj { get; set; }
+        public string? razaoSocial { get; set; }
+
+        public override void PagarImposto(float rendimento)
+        {
+            //imposto de pessoa juridica...
+        }
     }
 }

@@ -7,10 +7,10 @@ namespace Sistema
 {
     public abstract class Pessoa
     {
-       public string Nome { get; set; }
-       public string Endereco { get; set; }
-       public bool enderecoComercial { get; set; }
+       public string? Nome { get; set; }
+       public Endereco? endereco { get; set; }
 
-       public void PagarImposto(){}
+
+       public abstract void PagarImposto(float rendimento);
     }
 }

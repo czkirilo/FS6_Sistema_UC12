@@ -2,17 +2,35 @@
     class Program{
         static void Main(string[] args)
         {
-        Endereco end = new Endereco();
-        end.logradouro = "Rua X";
-        end.numero = 100;
-        end.complemento = "Perto do senai";
-        end.enderecoComercial = false;
+        Endereco banana = new Endereco();
+        banana.logradouro = "Rua X";
+        banana.numero = 100;
+        banana.complemento = "Perto do senai";
+        banana.enderecoComercial = true;
 
-        PessoaFisica Lucas = new PessoaFisica();
-        Lucas.endereco = end;
-        Lucas.cpf = "12345678";
-        Lucas.dataNasc = new DateTime (2010, 01, 19, 04,30,58);
-        Lucas.Nome = "Lucas Schiaffino";
+        PessoaJuridica Paralelepipedo = new PessoaJuridica();
+        Paralelepipedo.cnpj = "1618716187";
+
+        PessoaJuridica LC = new PessoaJuridica();
+        LC.endereco = banana;
+        LC.cnpj = "1235678990001";
+        LC.razaoSocial = "Pessoa Juridica";
+
+       bool cnpjvalidado = LC.validarCNPJ(LC.cnpj);
+       
+       if(cnpjvalidado == true){
+        Console.WriteLine("Verdadeiro - O CNPJ é valido");
+       }else{
+        Console.WriteLine("Falso - O CNPJ");
+       }
+
+
+
+       // PessoaFisica Lucas = new PessoaFisica();
+       // Lucas.endereco = end;
+       // Lucas.cpf = "12345678";
+       // Lucas.dataNasc = new DateTime (2010, 01, 19, 04,30,58);
+      //  Lucas.Nome = "Lucas Schiaffino";
 
         //Console.WriteLine(Lucas.endereco.logradouro);
         //Console.WriteLine(Lucas.endereco.numero);
@@ -30,9 +48,9 @@
     //Console.WriteLine($"O {Lucas.Nome}, cujo CPF é {Lucas.cpf} e faz aniversario no dia {Lucas.dataNasc} mora na {Lucas.endereco.logradouro} numero {Lucas.endereco.numero}"); 
 
             //Console.WriteLine(Lucas.ValidarDataNascimento(Lucas.dataNasc));
-            bool idadeValidada = Lucas.ValidarDataNascimento(Lucas.dataNasc);
-            Console.WriteLine(idadeValidada);
-
+           // bool idadeValidada = Lucas.ValidarDataNascimento(Lucas.dataNasc);
+          //  Console.WriteLine(idadeValidada);
+        /*
             if (idadeValidada == true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -55,7 +73,7 @@
                 Console.WriteLine("***********************************************************************");
                 Console.ResetColor();
             }
-
+*/
         }
     }
 }

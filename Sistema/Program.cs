@@ -2,11 +2,69 @@
     class Program{
         static void Main(string[] args)
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+           // Console.BackgroundColor = ConsoleColor.Green;
+            Console.WriteLine(@$"
+===================================================================
+|                                                                 |
+|  Bem vindo ao sistema de cadastro de pessoa fisica e juridica   |
+|                                                                 |
+===================================================================");
+//Console.Write("iniciando");
+Console.WriteLine("iniciando");
+Thread.Sleep(500);
+
+for (var contador = 0; contador < 10; contador++)
+{
+Console.Write("#");
+Thread.Sleep(500);
+}
+
+string oqueocaradigitounoteclado;
+
+do{
+     Console.WriteLine(@$"
+==================================================================
+|                   Escolha uma das opções abaixo                |
+==================================================================
+|                 1 - Pessoa Física                              |
+|                 2 - Pessoa Juridica                            |
+|                                                                |
+|                 0 - Sair                                       |    
+==================================================================");
+
+    oqueocaradigitounoteclado = Console.ReadLine();
+
+    switch (oqueocaradigitounoteclado)
+    {
+        case "1":
+        //o que eu quiser caso digitem 1
+        break;
+        case "2":
+        Console.Write("você digitou 2");
+        break;
+        case "0":
+        break;
+        default:
+        Console.WriteLine("Opção Invalida, digite uma das opções apresentadas acima.");
+        break;
+    }
+}while(oqueocaradigitounoteclado != "0");
+
+// paramos na pagina 5
+
+            Console.ResetColor();
+            /*
         Endereco banana = new Endereco();
         banana.logradouro = "Rua X";
         banana.numero = 100;
         banana.complemento = "Perto do senai";
         banana.enderecoComercial = true;
+
+        Endereco jabuticaba = new Endereco();
+        jabuticaba.logradouro = "Rua niteroi";
+        jabuticaba.numero = 180;
 
         PessoaJuridica Paralelepipedo = new PessoaJuridica();
         Paralelepipedo.cnpj = "1618716187";
@@ -23,8 +81,6 @@
        }else{
         Console.WriteLine("Falso - O CNPJ");
        }
-
-
 
        // PessoaFisica Lucas = new PessoaFisica();
        // Lucas.endereco = end;
@@ -50,7 +106,7 @@
             //Console.WriteLine(Lucas.ValidarDataNascimento(Lucas.dataNasc));
            // bool idadeValidada = Lucas.ValidarDataNascimento(Lucas.dataNasc);
           //  Console.WriteLine(idadeValidada);
-        /*
+        
             if (idadeValidada == true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;

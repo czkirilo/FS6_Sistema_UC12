@@ -3,6 +3,21 @@
         static void Main(string[] args)
         {
             Console.Clear();
+
+            void BarraCarregamento(string textoCarregamento, string icone){
+                Console.WriteLine(textoCarregamento);
+                Thread.Sleep(500);
+                for (var contador = 0; contador < 3; contador++)
+                {
+                Console.Write(icone);
+                Thread.Sleep(500);
+                }
+
+                Console.WriteLine("");
+
+            }
+
+
             Console.ForegroundColor = ConsoleColor.Cyan;
            // Console.BackgroundColor = ConsoleColor.Green;
             Console.WriteLine(@$"
@@ -11,15 +26,8 @@
 |  Bem vindo ao sistema de cadastro de pessoa fisica e juridica   |
 |                                                                 |
 ===================================================================");
-//Console.Write("iniciando");
-Console.WriteLine("iniciando");
-Thread.Sleep(500);
-
-for (var contador = 0; contador < 10; contador++)
-{
-Console.Write("#");
-Thread.Sleep(500);
-}
+BarraCarregamento("Iniciando","@");
+BarraCarregamento("Procurando a solução do seu problema","@");
 
 string oqueocaradigitounoteclado;
 
@@ -39,74 +47,28 @@ do{
     switch (oqueocaradigitounoteclado)
     {
         case "1":
-        //o que eu quiser caso digitem 1
-        break;
-        case "2":
-        Console.Write("você digitou 2");
-        break;
-        case "0":
-        break;
-        default:
-        Console.WriteLine("Opção Invalida, digite uma das opções apresentadas acima.");
-        break;
-    }
-}while(oqueocaradigitounoteclado != "0");
-
-// paramos na pagina 5
-
-            Console.ResetColor();
-            /*
         Endereco banana = new Endereco();
         banana.logradouro = "Rua X";
         banana.numero = 100;
         banana.complemento = "Perto do senai";
-        banana.enderecoComercial = true;
+        banana.enderecoComercial = false;
 
-        Endereco jabuticaba = new Endereco();
-        jabuticaba.logradouro = "Rua niteroi";
-        jabuticaba.numero = 180;
+           PessoaFisica Lucas = new PessoaFisica();
+            Lucas.endereco = banana;
+            Lucas.cpf = "12345678";
+            Lucas.dataNasc = new DateTime (2000, 01, 19, 04,30,58);
+            Lucas.Nome = "Lucas Schiaffino";
 
-        PessoaJuridica Paralelepipedo = new PessoaJuridica();
-        Paralelepipedo.cnpj = "1618716187";
+        Console.WriteLine(Lucas.endereco.logradouro);
+        Console.WriteLine(Lucas.endereco.numero);
+        Console.WriteLine(Lucas.endereco.complemento);
+        Console.WriteLine(Lucas.endereco.enderecoComercial);
+        Console.WriteLine(Lucas.Nome);
+        Console.WriteLine(Lucas.cpf);
+        Console.WriteLine(Lucas.dataNasc);
 
-        PessoaJuridica LC = new PessoaJuridica();
-        LC.endereco = banana;
-        LC.cnpj = "1235678990001";
-        LC.razaoSocial = "Pessoa Juridica";
+        bool idadeValidada = Lucas.ValidarDataNascimento(Lucas.dataNasc);
 
-       bool cnpjvalidado = LC.validarCNPJ(LC.cnpj);
-       
-       if(cnpjvalidado == true){
-        Console.WriteLine("Verdadeiro - O CNPJ é valido");
-       }else{
-        Console.WriteLine("Falso - O CNPJ");
-       }
-
-       // PessoaFisica Lucas = new PessoaFisica();
-       // Lucas.endereco = end;
-       // Lucas.cpf = "12345678";
-       // Lucas.dataNasc = new DateTime (2010, 01, 19, 04,30,58);
-      //  Lucas.Nome = "Lucas Schiaffino";
-
-        //Console.WriteLine(Lucas.endereco.logradouro);
-        //Console.WriteLine(Lucas.endereco.numero);
-        //Console.WriteLine(Lucas.endereco.complemento);
-        //Console.WriteLine(Lucas.endereco.enderecoComercial);
-       // Console.WriteLine(Lucas.Nome);
-        //Console.WriteLine(Lucas.cpf);
-        //Console.WriteLine(Lucas.dataNasc);
-
-// O ___ , cujo cpf é ___ e faz aniversario no dia ___ mora na ____ numero ____ 
-        //concatenação
-    //Console.WriteLine("O " + Lucas.Nome + ", cujo CPF é " + Lucas.cpf + " e nasceu no dia " + Lucas.dataNasc + " mora na " + Lucas.endereco.logradouro + " numero " + Lucas.endereco.numero );
-
-//interpolação
-    //Console.WriteLine($"O {Lucas.Nome}, cujo CPF é {Lucas.cpf} e faz aniversario no dia {Lucas.dataNasc} mora na {Lucas.endereco.logradouro} numero {Lucas.endereco.numero}"); 
-
-            //Console.WriteLine(Lucas.ValidarDataNascimento(Lucas.dataNasc));
-           // bool idadeValidada = Lucas.ValidarDataNascimento(Lucas.dataNasc);
-          //  Console.WriteLine(idadeValidada);
-        
             if (idadeValidada == true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -117,7 +79,7 @@ do{
                 Console.WriteLine("*                Seu Cadastro Foi Aprovado                            *");
                 Console.WriteLine("*                                                                     *");
                 Console.WriteLine("***********************************************************************");
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
             }else{
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("***********************************************************************");
@@ -127,9 +89,52 @@ do{
                 Console.WriteLine("* Seu Cadastro Foi Reprovado Por Motivos de Idade Minima Não Atingida *");
                 Console.WriteLine("*                                                                     *");
                 Console.WriteLine("***********************************************************************");
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
             }
-*/
+        break;
+        case "2":
+        Endereco endcom = new Endereco();
+
+        Console.WriteLine("Digite seu Logradouro");
+        endcom.logradouro = Console.ReadLine();
+
+        endcom.numero = 100;
+        endcom.complemento = "Perto do senai";
+        endcom.enderecoComercial = true;
+
+        PessoaJuridica LC = new PessoaJuridica();
+        LC.endereco = endcom;
+        LC.cnpj = "1235678990001";
+        LC.razaoSocial = "Pessoa Juridica";
+
+        
+        Console.WriteLine(LC.endereco.numero);
+        Console.WriteLine(LC.endereco.complemento);
+        Console.WriteLine(LC.endereco.enderecoComercial);
+        Console.WriteLine(LC.endereco.logradouro);
+        Console.WriteLine(LC.Nome);
+        Console.WriteLine(LC.cnpj);
+
+        bool cnpjvalidado = LC.validarCNPJ(LC.cnpj);
+       
+       if(cnpjvalidado == true){
+        Console.WriteLine("Verdadeiro - O CNPJ é valido");
+       }else{
+        Console.WriteLine("Falso - O CNPJ é invalido");
+       }
+
+        break;
+        case "0":
+        Console.WriteLine("Obrigado por utilizar o nosso sistema... até a proxima.");
+        BarraCarregamento("Fechando o sistema", "@");
+        Console.ResetColor();
+        break;
+        default:
+        Console.WriteLine("Opção Invalida, digite uma das opções apresentadas acima.");
+        break;
+    }
+}while(oqueocaradigitounoteclado != "0");      
+
         }
     }
 }

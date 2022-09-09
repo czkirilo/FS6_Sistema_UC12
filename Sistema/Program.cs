@@ -2,6 +2,7 @@
     class Program{
         static void Main(string[] args)
         {
+            List<PessoaFisica> listaPf = new List<PessoaFisica>();
             Console.Clear();
 
             void BarraCarregamento(string textoCarregamento, string icone){
@@ -36,8 +37,15 @@ do{
 ==================================================================
 |                   Escolha uma das opções abaixo                |
 ==================================================================
-|                 1 - Pessoa Física                              |
-|                 2 - Pessoa Juridica                            |
+|                     Pessoa Física                              |
+|                 1 - Cadastrar Pessoa Fisica                    |
+|                 2 - Listar Pessoa Fisica                       |
+|                 3 - Remover Pessoa Fisica                      |
+|                                                                |
+|                     Pessoa Juridica                            |
+|                 4 - Cadastrar Pessoa Juridica                  |
+|                 5 - Listar Pessoa Juridica                     |
+|                 6 - Remover Pessoa Juridica                    |
 |                                                                |
 |                 0 - Sair                                       |    
 ==================================================================");
@@ -48,51 +56,105 @@ do{
     {
         case "1":
         Endereco banana = new Endereco();
-        banana.logradouro = "Rua X";
-        banana.numero = 100;
-        banana.complemento = "Perto do senai";
-        banana.enderecoComercial = false;
+        Console.WriteLine($"Digite seu logradouro");
+        banana.logradouro = Console.ReadLine();
 
-           PessoaFisica Lucas = new PessoaFisica();
-            Lucas.endereco = banana;
-            Lucas.cpf = "12345678";
-            Lucas.dataNasc = new DateTime (2000, 01, 19, 04,30,58);
-            Lucas.Nome = "Lucas Schiaffino";
+        Console.WriteLine("Digite o numero da sua residencia");
+        banana.numero = int.Parse(Console.ReadLine());
+        
+        Console.WriteLine("Digite o complemento (Aperte enter para vazio)");
+        banana.complemento = Console.ReadLine();
 
-        Console.WriteLine(Lucas.endereco.logradouro);
-        Console.WriteLine(Lucas.endereco.numero);
-        Console.WriteLine(Lucas.endereco.complemento);
-        Console.WriteLine(Lucas.endereco.enderecoComercial);
-        Console.WriteLine(Lucas.Nome);
-        Console.WriteLine(Lucas.cpf);
-        Console.WriteLine(Lucas.dataNasc);
+        Console.WriteLine("Este endereço é comercial? S/N");
+        string oqueeledigitou = Console.ReadLine().ToUpper();
+        
+        // == é igual
+        if (oqueeledigitou == "S"){
+            banana.enderecoComercial = true;
+        } else{
+            banana.enderecoComercial = false;
+        }
 
-        bool idadeValidada = Lucas.ValidarDataNascimento(Lucas.dataNasc);
+        //banana.logradouro = "Rua X";
+        //banana.numero = 100;
+        //banana.complemento = "Perto do senai";
+        //banana.enderecoComercial = false;
+
+           PessoaFisica novapf = new PessoaFisica();
+           novapf.endereco = banana;
+                        Console.WriteLine($"Digite seu CPF (somente números");
+                        novapf.cpf = Console.ReadLine();
+
+                        Console.WriteLine($"Digite seu nome");
+                        novapf.Nome = Console.ReadLine();
+                        
+                        Console.WriteLine($"Digite o valor do seu rendimento mensal");
+                        novapf.rendimento = float.Parse(Console.ReadLine());
+                        
+                        Console.WriteLine($"Digite sua data de nascimento");
+                        novapf.dataNasc = DateTime.Parse(Console.ReadLine());
+
+
+        Console.WriteLine(novapf.endereco.logradouro);
+        Console.WriteLine(novapf.endereco.numero);
+        Console.WriteLine(novapf.endereco.complemento);
+        Console.WriteLine(novapf.endereco.enderecoComercial);
+        Console.WriteLine(novapf.Nome);
+        Console.WriteLine(novapf.cpf);
+        Console.WriteLine(novapf.dataNasc);
+        double ImpostoPago = novapf.PagarImposto(2000);
+        Console.WriteLine($"Ele vai pagar {ImpostoPago} reais de imposto");
+
+        bool idadeValidada = novapf.ValidarDataNascimento(novapf.dataNasc);
 
             if (idadeValidada == true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("***********************************************************************");
-                Console.WriteLine("*                SENAI - Cadastro de Pessoas                          *");
-                Console.WriteLine("*                                                                     *");
-                Console.WriteLine("*                                                                     *");
                 Console.WriteLine("*                Seu Cadastro Foi Aprovado                            *");
-                Console.WriteLine("*                                                                     *");
-                Console.WriteLine("***********************************************************************");
+                listaPf.Add(novapf);
                 Console.ForegroundColor = ConsoleColor.Cyan;
             }else{
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("***********************************************************************");
-                Console.WriteLine("*                SENAI - Cadastro de Pessoas                          *");
-                Console.WriteLine("*                                                                     *");
-                Console.WriteLine("*                                                                     *");
                 Console.WriteLine("* Seu Cadastro Foi Reprovado Por Motivos de Idade Minima Não Atingida *");
-                Console.WriteLine("*                                                                     *");
-                Console.WriteLine("***********************************************************************");
                 Console.ForegroundColor = ConsoleColor.Cyan;
             }
         break;
         case "2":
+        //Listar pessoa fisica
+        foreach (var cadaItem in listaPf){
+            Console.WriteLine($"{cadaItem.cpf}, {cadaItem.Nome}");
+        }
+
+        break;
+        case "3":// PARAMOS AQUI!!!!!!!!!!!!!!!!!!!!
+        //Remover pessoa fisica
+        break;
+        case "4":
+        //Cadastrar pessoa juridica
+        break;
+        case "5":
+        //Listar pessoa juridica
+        break;
+        case "6":
+        //Remover pessoa juridica
+        break;
+        case "0":
+        Console.WriteLine("Obrigado por utilizar o nosso sistema... até a proxima.");
+        BarraCarregamento("Fechando o sistema", "@");
+        Console.ResetColor();
+        break;
+        default:
+        Console.WriteLine("Opção Invalida, digite uma das opções apresentadas acima.");
+        break;
+    }
+}while(oqueocaradigitounoteclado != "0");      
+
+        }
+    }
+}
+
+/*
+ 
         Endereco endcom = new Endereco();
 
         Console.WriteLine("Digite seu Logradouro");
@@ -106,6 +168,8 @@ do{
         LC.endereco = endcom;
         LC.cnpj = "1235678990001";
         LC.razaoSocial = "Pessoa Juridica";
+        double ImpostoPago2 = LC.PagarImposto(10000);
+        Console.WriteLine($"Ele vai pagar {ImpostoPago2} reais de imposto");
 
         
         Console.WriteLine(LC.endereco.numero);
@@ -123,18 +187,4 @@ do{
         Console.WriteLine("Falso - O CNPJ é invalido");
        }
 
-        break;
-        case "0":
-        Console.WriteLine("Obrigado por utilizar o nosso sistema... até a proxima.");
-        BarraCarregamento("Fechando o sistema", "@");
-        Console.ResetColor();
-        break;
-        default:
-        Console.WriteLine("Opção Invalida, digite uma das opções apresentadas acima.");
-        break;
-    }
-}while(oqueocaradigitounoteclado != "0");      
-
-        }
-    }
-}
+*/

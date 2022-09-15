@@ -128,6 +128,17 @@ do{
         break;
         case "3":// PARAMOS AQUI!!!!!!!!!!!!!!!!!!!!
         //Remover pessoa fisica
+        Console.WriteLine("Digite o CPF que deseja remover [somente numeros]");
+        string cpfProcurado = Console.ReadLine();
+
+       PessoaFisica pessoaEncontrada = listaPf.Find(cadaItem => cadaItem.cpf == cpfProcurado);
+
+       if (pessoaEncontrada != null){
+        listaPf.Remove(pessoaEncontrada);
+        Console.WriteLine("Cadastro removido");
+       }else{
+            Console.WriteLine("CPF não encontrado");
+       }
         break;
         case "4":
         //Cadastrar pessoa juridica

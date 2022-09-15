@@ -109,17 +109,35 @@ do{
                 Console.ForegroundColor = ConsoleColor.Cyan;
             }
 
-            StreamWriter sw = new StreamWriter($"{novapf.Nome}.txt");
+          //  StreamWriter sw = new StreamWriter($"{novapf.Nome}.txt");
+          //  sw.WriteLine(novapf.Nome);
+         //   sw.WriteLine(novapf.cpf);
+          //  sw.Close();
+
+          using (StreamWriter sw = new StreamWriter($"{novapf.Nome}.txt")){
             sw.WriteLine(novapf.Nome);
             sw.WriteLine(novapf.cpf);
+          }
 
 
         break;
         case "2":
         //Listar pessoa fisica
-        foreach (var cadaItem in listaPf){
-            Console.WriteLine($"{cadaItem.cpf}, {cadaItem.Nome}");
+      //  foreach (var cadaItem in listaPf){
+      //      Console.WriteLine($"{cadaItem.cpf}, {cadaItem.Nome}");
+      //  }
+    Console.WriteLine("Digite o nome da pessoa que deseja ler o cadastro");
+    string nomedigitado = Console.ReadLine();
+
+      using (StreamReader sr = new StreamReader($"{nomedigitado}.txt")){
+        string linha;
+        while ((linha = sr.ReadLine()) != null){
+            Console.WriteLine($"{linha}");
         }
+      }
+
+      Console.WriteLine("Aperte qualquer tecla para continuar");
+      Console.ReadLine();
 
         break;
         case "3":// PARAMOS AQUI!!!!!!!!!!!!!!!!!!!!

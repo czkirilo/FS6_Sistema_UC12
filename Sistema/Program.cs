@@ -55,6 +55,7 @@ do{
     switch (oqueocaradigitounoteclado)
     {
         case "1":
+       /*
         Endereco banana = new Endereco();
         Console.WriteLine($"Digite seu logradouro");
         banana.logradouro = Console.ReadLine();
@@ -74,36 +75,25 @@ do{
         } else{
             banana.enderecoComercial = false;
         }
-
+*/
         //banana.logradouro = "Rua X";
         //banana.numero = 100;
         //banana.complemento = "Perto do senai";
         //banana.enderecoComercial = false;
 
            PessoaFisica novapf = new PessoaFisica();
-           novapf.endereco = banana;
+         //  novapf.endereco = banana;
                         Console.WriteLine($"Digite seu CPF (somente números");
                         novapf.cpf = Console.ReadLine();
 
                         Console.WriteLine($"Digite seu nome");
                         novapf.Nome = Console.ReadLine();
                         
-                        Console.WriteLine($"Digite o valor do seu rendimento mensal");
-                        novapf.rendimento = float.Parse(Console.ReadLine());
+                     //   Console.WriteLine($"Digite o valor do seu rendimento mensal");
+                      //  novapf.rendimento = float.Parse(Console.ReadLine());
                         
-                        Console.WriteLine($"Digite sua data de nascimento");
-                        novapf.dataNasc = DateTime.Parse(Console.ReadLine());
-
-
-        Console.WriteLine(novapf.endereco.logradouro);
-        Console.WriteLine(novapf.endereco.numero);
-        Console.WriteLine(novapf.endereco.complemento);
-        Console.WriteLine(novapf.endereco.enderecoComercial);
-        Console.WriteLine(novapf.Nome);
-        Console.WriteLine(novapf.cpf);
-        Console.WriteLine(novapf.dataNasc);
-        double ImpostoPago = novapf.PagarImposto(2000);
-        Console.WriteLine($"Ele vai pagar {ImpostoPago} reais de imposto");
+                      //  Console.WriteLine($"Digite sua data de nascimento");
+                      //  novapf.dataNasc = DateTime.Parse(Console.ReadLine());
 
         bool idadeValidada = novapf.ValidarDataNascimento(novapf.dataNasc);
 
@@ -118,6 +108,12 @@ do{
                 Console.WriteLine("* Seu Cadastro Foi Reprovado Por Motivos de Idade Minima Não Atingida *");
                 Console.ForegroundColor = ConsoleColor.Cyan;
             }
+
+            StreamWriter sw = new StreamWriter($"{novapf.Nome}.txt");
+            sw.WriteLine(novapf.Nome);
+            sw.WriteLine(novapf.cpf);
+
+
         break;
         case "2":
         //Listar pessoa fisica

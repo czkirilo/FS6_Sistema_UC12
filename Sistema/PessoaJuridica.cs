@@ -10,6 +10,8 @@ namespace Sistema
         public string? cnpj { get; set; }
         public string? razaoSocial { get; set; }
 
+        public string caminho { get; private set; } = "Database/PessoaJuridica.csv";
+
         public override double PagarImposto(float rendimento)
         {
             if (rendimento <= 5000){
@@ -34,6 +36,33 @@ namespace Sistema
             }
                 return false;
             
+        }
+
+        public void Inserir(PessoaJuridica pj){
+            VerificarPastaArquivo(caminho);
+
+            string[] pjString = {$"{pj.Nome},{pj.cnpj},{pj.razaoSocial}"};
+
+            File.AppendAllLines(caminho, pjString);
+        }
+
+        public List<PessoaJuridica> Ler(){
+            List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
+
+            string[] linhas = File.ReadAllLines(caminho);
+
+            foreach (string cadaLinha in linhas){
+                string[] atributos = cadaLinha.Split(",");
+
+                PessoaJuridica cadaPj = new PessoaJuridica();
+
+                cadaPj.Nome = atributos[0];
+                cadaPj.cnpj = atributos[1];
+                cadaPj.razaoSocial = atributos[2];
+
+                listaPj.Add(cadaPj);
+            }
+            return listaPj;
         }
     }
 }

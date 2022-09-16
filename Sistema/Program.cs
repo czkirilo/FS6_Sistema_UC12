@@ -2,6 +2,10 @@
     class Program{
         static void Main(string[] args)
         {
+            PessoaJuridica metodoPj = new PessoaJuridica();
+            PessoaJuridica novaPj = new PessoaJuridica();
+            Endereco novoEndPj = new Endereco();
+
             List<PessoaFisica> listaPf = new List<PessoaFisica>();
             Console.Clear();
 
@@ -89,8 +93,8 @@ do{
                         Console.WriteLine($"Digite seu nome");
                         novapf.Nome = Console.ReadLine();
                         
-                     //   Console.WriteLine($"Digite o valor do seu rendimento mensal");
-                      //  novapf.rendimento = float.Parse(Console.ReadLine());
+                        Console.WriteLine($"Digite o valor do seu rendimento mensal");
+                        novapf.rendimento = float.Parse(Console.ReadLine());
                         
                       //  Console.WriteLine($"Digite sua data de nascimento");
                       //  novapf.dataNasc = DateTime.Parse(Console.ReadLine());
@@ -117,6 +121,7 @@ do{
           using (StreamWriter sw = new StreamWriter($"{novapf.Nome}.txt")){
             sw.WriteLine(novapf.Nome);
             sw.WriteLine(novapf.cpf);
+            sw.WriteLine(novapf.rendimento);
           }
 
 
@@ -156,9 +161,35 @@ do{
         break;
         case "4":
         //Cadastrar pessoa juridica
+                        novaPj.Nome = "Nome PJ";
+                        novaPj.cnpj = "00.000.000/0001-00";
+                        novaPj.razaoSocial = "Razaão Social Pj";
+
+                        novoEndPj.logradouro = "Alameda Barão de Limeira";
+                        novoEndPj.numero = 539;
+                        novoEndPj.complemento = "SENAI Informática";
+                        novoEndPj.enderecoComercial = true;
+
+                         novaPj.endereco = novoEndPj;
+
+                        metodoPj.Inserir(novaPj);
         break;
         case "5":
         //Listar pessoa juridica
+        List<PessoaJuridica> listaPj = metodoPj.Ler();
+
+        foreach (PessoaJuridica cadaItem in listaPj)
+        {
+            Console.Clear();
+            Console.WriteLine(@$"
+            Nome: {cadaItem.Nome}
+            Razão Social: {cadaItem.razaoSocial}
+            CNPJ: {cadaItem.cnpj}
+            ");
+
+        Console.WriteLine("Aperte qualquer tecla para continuar");
+        Console.ReadLine();
+        }
         break;
         case "6":
         //Remover pessoa juridica
